@@ -1,12 +1,5 @@
 module Commands
   class Show < ::Command
-    # Initialize Show Class.
-    #
-    # @param [App] app App object running the application.
-    def initialize(app)
-      super(app)
-    end
-
     # Execute the command. Display the bitmap.
     def execute
       width = @app.bitmap.width
@@ -25,7 +18,7 @@ module Commands
     # @param [] args List of the arguments passed to the initialize method.
     # @return [Show] the newly created instance of the command.
     def self.create(app, *args)
-      Show.new(app)
+      new(app)
     end
   end
 end

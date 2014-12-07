@@ -1,5 +1,7 @@
 module Commands
   class Create < ::Command
+    attr_reader :width, :height
+
     # Initialize Create Class.
     #
     # @param [App] app App object running the application.
@@ -22,7 +24,7 @@ module Commands
     # @param [] args List of the arguments passed to the initialize method.
     # @return [Create] the newly created instance of the command.
     def self.create(app, *args)
-      Create.new(app, *args)
+      new(app, *args)
     end
   end
 end

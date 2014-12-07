@@ -1,5 +1,7 @@
 module Commands
   class SetPixel < ::Command
+    attr_reader :x, :y, :colour
+
     # Initialize SetPixel Class.
     #
     # @param [App] app App object running the application.
@@ -24,7 +26,7 @@ module Commands
     # @param [] args List of the arguments passed to the initialize method.
     # @return [SetPixel] the newly created instance of the command.
     def self.create(app, *args)
-      SetPixel.new(app, *args)
+      new(app, *args)
     end
   end
 end

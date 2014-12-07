@@ -9,8 +9,6 @@ Programming assignment Bitmap Editor
 First install `rspec`:
 
     $ gem install rspec
-    ...
-    $ gem install rspec-its
 
 And then:
 
