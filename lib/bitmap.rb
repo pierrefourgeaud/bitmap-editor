@@ -22,11 +22,11 @@ class Bitmap
     @data = "O" * data_size
   end
 
-  def set(x, y, c)
+  def []=(x, y, c)
     data[y * width + x] = c
   end
 
-  def get(x, y)
+  def [](x, y)
     data[y * width + x]
   end
 end

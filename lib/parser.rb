@@ -2,7 +2,8 @@ class Parser
   COMMANDS = {
     "I" => "Create",
     "S" => "Show",
-    "X" => "Quit"
+    "X" => "Quit",
+    "L" => "SetPixel"
   }
 
   COMMANDS.each do |c, v|

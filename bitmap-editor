@@ -7,6 +7,7 @@ require './lib/command'
 require './lib/commands/create'
 require './lib/commands/quit'
 require './lib/commands/show'
+require './lib/commands/set_pixel'
 
 app = App.new()
 app.run()
