@@ -1,3 +1,12 @@
 #!/usr/bin/env ruby
 
-require './lib/commandline'
+require './lib/app'
+require './lib/parser'
+require './lib/bitmap'
+require './lib/command'
+require './lib/commands/create'
+require './lib/commands/quit'
+require './lib/commands/show'
+
+app = App.new()
+app.run()
