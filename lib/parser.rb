@@ -4,6 +4,7 @@ require './lib/commands/quit'
 require './lib/commands/set_pixel'
 require './lib/commands/show'
 require './lib/commands/vertical_draw'
+require './lib/commands/horizontal_draw'
 require './lib/exception'
 
 class Parser
@@ -15,7 +16,8 @@ class Parser
       "S" => "Show",
       "X" => "Quit",
       "L" => "SetPixel",
-      "V" => "VerticalDraw"
+      "V" => "VerticalDraw",
+      "H" => "HorizontalDraw"
     }
   end
 
