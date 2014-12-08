@@ -37,6 +37,12 @@ module Commands
 
     private
 
+    # Recursive method implementing the fill algorithm.
+    #
+    # @param [Bitmap] bitmap Bitmap object created previously.
+    # @param [Integer] px the pixel in x we want to modify
+    # @param [Integer] py the pixel in y we want to modify
+    # @param [Char] ocolour the colour the pixel must have to be modified.
     def fill bitmap, px, py, ocolour
       return unless bitmap.check_range(px, py) && bitmap[px, py] == ocolour
 
