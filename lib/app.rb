@@ -17,7 +17,7 @@ class App
       while line = readline
         begin
           @parser.parse(line).execute
-        rescue StandardError => e
+        rescue BitmapEditorError => e
           puts e.message
         end
       end

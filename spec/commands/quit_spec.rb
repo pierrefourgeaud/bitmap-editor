@@ -32,7 +32,7 @@ describe Commands::Quit do
 
     context "when bad number of arguments" do
 
-      it { expect { Commands::Quit.create(app, "foo") }.to raise_error(InvalidArguments) }
+      it { expect { Commands::Quit.create(app, "foo") }.to raise_error(BadNumberArguments) }
 
     end
 

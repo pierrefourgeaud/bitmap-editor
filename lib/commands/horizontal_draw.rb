@@ -20,6 +20,7 @@ module Commands
     # Execute the command.
     # Draw a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive).
     def execute
+      fail MissingBitmap if app.bitmap.nil?
       (x1..x2).each do |x|
         app.bitmap[x, y] = colour
       end
@@ -31,7 +32,7 @@ module Commands
     # @param [] args List of the arguments passed to the initialize method.
     # @return [HorizontalDraw] the newly created instance of the command.
     def self.create(app, *args)
-      fail InvalidArguments if args.length != 4
+      fail BadNumberArguments.new(args.length, 4) if args.length != 4
       fail InvalidArguments unless args[0].is_i? && args[1].is_i? && args[2].is_i? && args[3].is_colour?
       new(app, *args)
     end

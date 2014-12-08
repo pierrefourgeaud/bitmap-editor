@@ -20,6 +20,7 @@ module Commands
     # Any other pixel which is the same colour as (X,Y) and shares a common side with
     # any pixel in R also belongs to this region.
     def execute
+      fail MissingBitmap if app.bitmap.nil?
       fill(app.bitmap, x, y, app.bitmap[x, y])
     end
 
@@ -29,7 +30,7 @@ module Commands
     # @param [] args List of the arguments passed to the initialize method.
     # @return [Fill] the newly created instance of the command.
     def self.create(app, *args)
-      fail InvalidArguments if args.length != 3
+      fail BadNumberArguments.new(args.length, 3) if args.length != 3
       fail InvalidArguments unless args[0].is_i? && args[1].is_i? && args[2].is_colour?
       new(app, *args)
     end

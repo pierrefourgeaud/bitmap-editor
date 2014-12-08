@@ -52,6 +52,11 @@ class Bitmap
     data[(y-1) * width + (x-1)]
   end
 
+  # Check if the pixel (x, y) is within the bitmap.
+  #
+  # @param [Integer] x the x of the pixel
+  # @param [Integer] y the y of the pixel
+  # @return [Boolean] true if the pixel is within the image.
   def check_range(x, y)
     !(x < 1 || y < 1 || x > width || y > height)
   end

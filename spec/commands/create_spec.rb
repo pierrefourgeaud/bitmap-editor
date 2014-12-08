@@ -44,7 +44,7 @@ describe Commands::Create do
 
     context "when bad number of arguments" do
 
-      it { expect { Commands::Create.create(app, width) }.to raise_error(InvalidArguments) }
+      it { expect { Commands::Create.create(app, width) }.to raise_error(BadNumberArguments) }
 
     end
 

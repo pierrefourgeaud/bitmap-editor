@@ -6,7 +6,7 @@ require './lib/commands/show'
 require './lib/commands/vertical_draw'
 require './lib/commands/horizontal_draw'
 require './lib/commands/fill'
-require './lib/exception'
+require './lib/bitmap_editor_error'
 
 class Parser
   attr_reader :app

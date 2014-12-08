@@ -27,7 +27,7 @@ module Commands
     # @param [] args List of the arguments passed to the initialize method.
     # @return [Create] the newly created instance of the command.
     def self.create(app, *args)
-      fail InvalidArguments if args.length != 2
+      fail BadNumberArguments.new(args.length, 2) if args.length != 2
       fail InvalidArguments unless args[0].is_i? && args[1].is_i?
       new(app, *args)
     end
