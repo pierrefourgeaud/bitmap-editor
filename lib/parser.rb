@@ -6,6 +6,7 @@ require './lib/commands/show'
 require './lib/commands/vertical_draw'
 require './lib/commands/horizontal_draw'
 require './lib/commands/fill'
+require './lib/commands/clear'
 require './lib/bitmap_editor_error'
 
 class Parser
@@ -19,7 +20,8 @@ class Parser
       "L" => "SetPixel",
       "V" => "VerticalDraw",
       "H" => "HorizontalDraw",
-      "F" => "Fill"
+      "F" => "Fill",
+      "C" => "Clear"
     }
   end
 
