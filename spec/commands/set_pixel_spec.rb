@@ -26,11 +26,7 @@ describe Commands::SetPixel do
 
   describe "#execute" do
 
-    before do
-      subject.execute
-    end
-
-    it { expect(app.bitmap[x.to_i, y.to_i]).to eq(colour) }
+    it { expect{ subject.execute }.to change { app.bitmap.data }.from('OOOO').to('OOAO') }
 
   end
 

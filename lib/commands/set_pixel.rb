@@ -27,7 +27,7 @@ module Commands
     # @return [SetPixel] the newly created instance of the command.
     def self.create(app, *args)
       fail InvalidArguments if args.length != 3
-      fail InvalidArguments unless args[0].is_i? && args[1].is_i?
+      fail InvalidArguments unless args[0].is_i? && args[1].is_i? && args[2].is_colour?
       new(app, *args)
     end
   end

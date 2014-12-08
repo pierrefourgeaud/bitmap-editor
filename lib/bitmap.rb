@@ -38,7 +38,7 @@ class Bitmap
   # @param [Integer] y the y of the pixel
   # @param [Char] the new color of the pixel
   def []=(x, y, c)
-    check_range(x, y)
+    fail OutOfRange unless check_range(x, y)
     data[(y-1) * width + (x-1)] = c
   end
 
@@ -48,13 +48,11 @@ class Bitmap
   # @param [Integer] y the y of the pixel
   # @return [Char] the color of the pixel
   def [](x, y)
-    check_range(x, y)
+    fail OutOfRange unless check_range(x, y)
     data[(y-1) * width + (x-1)]
   end
 
-  private
-
   def check_range(x, y)
-    fail OutOfRange if x < 1 || y < 1 || x > width || y > height
+    !(x < 1 || y < 1 || x > width || y > height)
   end
 end
