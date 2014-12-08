@@ -3,6 +3,7 @@ require './lib/commands/create'
 require './lib/commands/quit'
 require './lib/commands/set_pixel'
 require './lib/commands/show'
+require './lib/commands/vertical_draw'
 require './lib/exception'
 
 class Parser
@@ -13,7 +14,8 @@ class Parser
       "I" => "Create",
       "S" => "Show",
       "X" => "Quit",
-      "L" => "SetPixel"
+      "L" => "SetPixel",
+      "V" => "VerticalDraw"
     }
   end
 

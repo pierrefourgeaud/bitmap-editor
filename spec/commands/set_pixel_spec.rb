@@ -55,9 +55,9 @@ describe Commands::SetPixel do
 
     context "when bad type of arguments" do
 
-      it { expect { Commands::Create.create(app, x, "foo", colour) }.to raise_error(InvalidArguments) }
-      it { expect { Commands::Create.create(app, "foo", y, colour) }.to raise_error(InvalidArguments) }
-      it { expect { Commands::Create.create(app, x, y, "foo") }.to      raise_error(InvalidArguments) }
+      it { expect { Commands::SetPixel.create(app, x, "foo", colour) }.to raise_error(InvalidArguments) }
+      it { expect { Commands::SetPixel.create(app, "foo", y, colour) }.to raise_error(InvalidArguments) }
+      it { expect { Commands::SetPixel.create(app, x, y, "foo") }.to      raise_error(InvalidArguments) }
 
     end
 
