@@ -38,7 +38,8 @@ class Bitmap
   # @param [Integer] y the y of the pixel
   # @param [Char] the new color of the pixel
   def []=(x, y, c)
-    data[y * width + x] = c
+    check_range(x, y)
+    data[(y-1) * width + (x-1)] = c
   end
 
   # Element reference operator to get a pixel.
@@ -47,6 +48,13 @@ class Bitmap
   # @param [Integer] y the y of the pixel
   # @return [Char] the color of the pixel
   def [](x, y)
-    data[y * width + x]
+    check_range(x, y)
+    data[(y-1) * width + (x-1)]
+  end
+
+  private
+
+  def check_range(x, y)
+    fail OutOfRange if x < 1 || y < 1 || x > width || y > height
   end
 end

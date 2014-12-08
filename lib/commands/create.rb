@@ -1,3 +1,6 @@
+require './lib/string'
+require './lib/bitmap'
+
 module Commands
   class Create < ::Command
     attr_reader :width, :height
@@ -9,8 +12,8 @@ module Commands
     # @param [Integer] height the height of the bitmap
     def initialize(app, width, height)
       super(app)
-      @width  = width
-      @height = height
+      @width  = width.to_i
+      @height = height.to_i
     end
 
     # Execute the command. Create the Bitmap object.
@@ -24,6 +27,8 @@ module Commands
     # @param [] args List of the arguments passed to the initialize method.
     # @return [Create] the newly created instance of the command.
     def self.create(app, *args)
+      fail InvalidArguments if args.length != 2
+      fail InvalidArguments unless args[0].is_i? && args[1].is_i?
       new(app, *args)
     end
   end

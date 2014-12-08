@@ -2,7 +2,7 @@ module Commands
   class Quit < ::Command
     # Execute the command. Set a flag to quit the application.
     def execute
-      @app.running = false
+      throw :quit
     end
 
     # Class method. Verify the arguments and create the command.
@@ -11,6 +11,7 @@ module Commands
     # @param [] args List of the arguments passed to the initialize method.
     # @return [Quit] the newly created instance of the command.
     def self.create(app, *args)
+      fail InvalidArguments unless args.empty?
       new(app)
     end
   end

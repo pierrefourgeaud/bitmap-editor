@@ -17,7 +17,7 @@ module Commands
 
     # Execute the command. Set the pixel (x, y) to the colour colour.
     def execute
-      @app.bitmap[@x-1, @y-1] = @colour
+      @app.bitmap[@x, @y] = @colour
     end
 
     # Class method. Verify the arguments and create the command.
@@ -26,6 +26,8 @@ module Commands
     # @param [] args List of the arguments passed to the initialize method.
     # @return [SetPixel] the newly created instance of the command.
     def self.create(app, *args)
+      fail InvalidArguments if args.length != 3
+      fail InvalidArguments unless args[0].is_i? && args[1].is_i?
       new(app, *args)
     end
   end

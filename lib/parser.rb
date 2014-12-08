@@ -1,7 +1,23 @@
+require './lib/command'
+require './lib/commands/create'
+require './lib/commands/quit'
+require './lib/commands/set_pixel'
+require './lib/commands/show'
+require './lib/exception'
+
 class Parser
   attr_reader :app
 
-  commands.each do |c, v|
+  def self.commands
+    {
+      "I" => "Create",
+      "S" => "Show",
+      "X" => "Quit",
+      "L" => "SetPixel"
+    }
+  end
+
+  Parser.commands.each do |c, v|
     define_method("command_#{c}") do |*args|
       Commands.const_get("#{v}").create(@app, *args)
     end
@@ -14,15 +30,7 @@ class Parser
   def parse(str)
     args = str.split
     command = args.shift
+    fail InvalidCommand, command unless Parser.commands.has_key?(command)
     public_send("command_#{command}", *args)
-  end
-
-  def self.commands
-    {
-      "I" => "Create",
-      "S" => "Show",
-      "X" => "Quit",
-      "L" => "SetPixel"
-    }
   end
 end

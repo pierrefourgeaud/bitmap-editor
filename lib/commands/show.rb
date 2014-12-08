@@ -4,9 +4,9 @@ module Commands
     def execute
       width = @app.bitmap.width
       height = @app.bitmap.height
-      (0...height).each do |y|
-        (0...width).each do |x|
-          print @app.bitmap.get(x, y)
+      (1..height).each do |y|
+        (1..width).each do |x|
+          print @app.bitmap[x, y]
         end
         puts
       end
@@ -18,6 +18,7 @@ module Commands
     # @param [] args List of the arguments passed to the initialize method.
     # @return [Show] the newly created instance of the command.
     def self.create(app, *args)
+      fail InvalidArguments unless args.empty?
       new(app)
     end
   end
