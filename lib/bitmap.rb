@@ -20,9 +20,16 @@ class Bitmap
 
   # Return the data and set it if it is not done yet.
   #
-  # @param [String] the data representing the bitmap.
+  # @return [String] the data representing the bitmap.
   def data
     @data ||= "O" * size
+  end
+
+  # Set the data
+  #
+  # @param [String] the data representing the bitmap.
+  def data=(str)
+    @data = str
   end
 
   # Clear the bitmap by setting all the pixel to O.

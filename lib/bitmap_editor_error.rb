@@ -1,5 +1,11 @@
 class BitmapEditorError < StandardError; end
 
+class NoStackedCommand < BitmapEditorError
+  def initialize(msg = 'No command on the stack.')
+    super
+  end
+end
+
 class MissingBitmap < BitmapEditorError
   def initialize(msg = 'No bitmap created, create a bitmap before trying to modify it.')
     super

@@ -1,5 +1,5 @@
 module Commands
-  class VerticalDraw < ::Command
+  class VerticalDraw < ::UndoableCommand
     attr_reader :x, :y1, :y2, :colour
 
     # Initialize VerticalDraw Class.
@@ -21,8 +21,17 @@ module Commands
     # Draw a vertical segment of colour C in column X between rows Y1 and Y2 (inclusive).
     def execute
       fail MissingBitmap if app.bitmap.nil?
+      @saved_data = ""
       (y1..y2).each do |y|
+        @saved_data << app.bitmap[x, y]
         app.bitmap[x, y] = colour
+      end
+    end
+
+    # Undo the command.
+    def undo
+      (y1..y2).each_with_index do |y, i|
+        app.bitmap[x, y] = saved_data[i]
       end
     end
 

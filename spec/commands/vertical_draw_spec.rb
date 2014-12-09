@@ -5,15 +5,15 @@ require 'app'
 describe Commands::VerticalDraw do
 
   let(:x)  { "2" }
-  let(:y1) { "3" }
-  let(:y2) { "4" }
+  let(:y1) { "1" }
+  let(:y2) { "3" }
   let(:colour) { "W" }
   let(:app)    { App.new }
 
   context "when a bitmap is already created" do
 
     before do
-      Commands::Create.new(app, 5, 6).execute
+      Commands::Create.new(app, 2, 3).execute
     end
 
     subject { Commands::VerticalDraw.new(app, x, y1, y2, colour) }
@@ -36,6 +36,16 @@ describe Commands::VerticalDraw do
 
       it { expect(app.bitmap[x.to_i, y1.to_i]).to eq(colour) }
       it { expect(app.bitmap[x.to_i, y2.to_i]).to eq(colour) }
+
+    end
+
+    describe "#undo" do
+
+      before do
+        subject.execute
+      end
+
+      it { expect{ subject.undo }.to change { app.bitmap.data }.from('OWOWOW').to('OOOOOO') }
 
     end
 

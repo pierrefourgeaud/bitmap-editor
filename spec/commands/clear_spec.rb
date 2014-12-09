@@ -30,6 +30,17 @@ describe Commands::Clear do
 
     end
 
+    describe "#undo" do
+
+      before do
+        app.bitmap[1, 1] = 'A'
+        subject.execute
+      end
+
+      it { expect{ subject.undo }.to change { app.bitmap.data }.from('OOOO').to('AOOO') }
+
+    end
+
     describe ".create" do
 
       context "when correct arguments" do

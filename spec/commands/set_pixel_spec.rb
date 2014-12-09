@@ -32,6 +32,16 @@ describe Commands::SetPixel do
 
     end
 
+    describe "#undo" do
+
+      before do
+        subject.execute
+      end
+
+      it { expect{ subject.undo }.to change { app.bitmap.data }.from('OOAO').to('OOOO') }
+
+    end
+
     describe ".create" do
 
       context "when correct arguments" do

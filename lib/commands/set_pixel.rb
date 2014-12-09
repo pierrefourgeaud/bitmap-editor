@@ -1,5 +1,5 @@
 module Commands
-  class SetPixel < ::Command
+  class SetPixel < ::UndoableCommand
     attr_reader :x, :y, :colour
 
     # Initialize SetPixel Class.
@@ -18,7 +18,13 @@ module Commands
     # Execute the command. Set the pixel (x, y) to the colour colour.
     def execute
       fail MissingBitmap if app.bitmap.nil?
-      @app.bitmap[@x, @y] = @colour
+      @saved_data = app.bitmap[x, y]
+      app.bitmap[x, y] = colour
+    end
+
+    # Undo the command.
+    def undo
+      app.bitmap[x, y] = saved_data
     end
 
     # Class method. Verify the arguments and create the command.

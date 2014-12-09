@@ -1,5 +1,5 @@
 module Commands
-  class Fill < ::Command
+  class Fill < ::UndoableCommand
     attr_reader :x, :y, :colour
 
     # Initialize Fill Class.
@@ -21,7 +21,13 @@ module Commands
     # any pixel in R also belongs to this region.
     def execute
       fail MissingBitmap if app.bitmap.nil?
-      fill(app.bitmap, x, y, app.bitmap[x, y])
+      @saved_data = app.bitmap[x, y]
+      fill(app.bitmap, x, y, app.bitmap[x, y], colour)
+    end
+
+    # Undo the command.
+    def undo
+      fill(app.bitmap, x, y, app.bitmap[x, y], saved_data)
     end
 
     # Class method. Verify the arguments and create the command.
@@ -43,14 +49,14 @@ module Commands
     # @param [Integer] px the pixel in x we want to modify
     # @param [Integer] py the pixel in y we want to modify
     # @param [Char] ocolour the colour the pixel must have to be modified.
-    def fill bitmap, px, py, ocolour
+    def fill bitmap, px, py, ocolour, icolour
       return unless bitmap.check_range(px, py) && bitmap[px, py] == ocolour
 
-      bitmap[px, py] = colour
-      fill(bitmap, px+1, py, ocolour)
-      fill(bitmap, px-1, py, ocolour)
-      fill(bitmap, px, py+1, ocolour)
-      fill(bitmap, px, py-1, ocolour)
+      bitmap[px, py] = icolour
+      fill(bitmap, px+1, py, ocolour, icolour)
+      fill(bitmap, px-1, py, ocolour, icolour)
+      fill(bitmap, px, py+1, ocolour, icolour)
+      fill(bitmap, px, py-1, ocolour, icolour)
     end
   end
 end

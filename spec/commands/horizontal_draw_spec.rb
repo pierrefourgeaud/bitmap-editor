@@ -4,8 +4,8 @@ require 'app'
 
 describe Commands::HorizontalDraw do
 
-  let(:x1) { "3" }
-  let(:x2) { "4" }
+  let(:x1) { "2" }
+  let(:x2) { "3" }
   let(:y)  { "2" }
   let(:colour) { "Z" }
   let(:app)    { App.new }
@@ -13,7 +13,7 @@ describe Commands::HorizontalDraw do
   context "when a bitmap is already created" do
 
     before do
-      Commands::Create.new(app, 5, 6).execute
+      Commands::Create.new(app, 3, 2).execute
     end
 
     subject { Commands::HorizontalDraw.new(app, x1, x2, y, colour) }
@@ -36,6 +36,16 @@ describe Commands::HorizontalDraw do
 
       it { expect(app.bitmap[x1.to_i, y.to_i]).to eq(colour) }
       it { expect(app.bitmap[x2.to_i, y.to_i]).to eq(colour) }
+
+    end
+
+    describe "#undo" do
+
+      before do
+        subject.execute
+      end
+
+      it { expect{ subject.undo }.to change { app.bitmap.data }.from('OOOOZZ').to('OOOOOO') }
 
     end
 

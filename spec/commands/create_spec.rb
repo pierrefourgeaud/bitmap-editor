@@ -30,6 +30,33 @@ describe Commands::Create do
 
   end
 
+  describe "#undo" do
+
+    context "when app didn't have a bitmap before" do
+
+      before do
+        subject.execute
+      end
+
+      it { expect{ subject.undo }.to change { app.bitmap }.to(nil) }
+
+    end
+
+    context "when app have a bitmap before" do
+
+      let(:bm) { Bitmap.new(width.to_i, height.to_i) }
+
+      before do
+        app.bitmap = bm
+        subject.execute
+      end
+
+      it { expect{ subject.undo }.to change { app.bitmap }.to(bm) }
+
+    end
+
+  end
+
   describe ".create" do
 
     context "when correct arguments" do

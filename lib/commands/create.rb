@@ -2,7 +2,7 @@ require './lib/string'
 require './lib/bitmap'
 
 module Commands
-  class Create < ::Command
+  class Create < ::UndoableCommand
     attr_reader :width, :height
 
     # Initialize Create Class.
@@ -18,7 +18,13 @@ module Commands
 
     # Execute the command. Create the Bitmap object.
     def execute
-      @app.bitmap = Bitmap.new(@width, @height)
+      @saved_data = app.bitmap unless app.bitmap.nil?
+      app.bitmap = Bitmap.new(@width, @height)
+    end
+
+    # Undo the command.
+    def undo
+      app.bitmap = saved_data
     end
 
     # Class method. Verify the arguments and create the command.

@@ -1,5 +1,5 @@
 module Commands
-  class HorizontalDraw < ::Command
+  class HorizontalDraw < ::UndoableCommand
     attr_reader :x1, :x2, :y, :colour
 
     # Initialize HorizontalDraw Class.
@@ -21,8 +21,17 @@ module Commands
     # Draw a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive).
     def execute
       fail MissingBitmap if app.bitmap.nil?
+      @saved_data = ""
       (x1..x2).each do |x|
+        @saved_data << app.bitmap[x, y]
         app.bitmap[x, y] = colour
+      end
+    end
+
+    # Undo the command.
+    def undo
+      (x1..x2).each_with_index do |x, i|
+        app.bitmap[x, y] = saved_data[i]
       end
     end
 
