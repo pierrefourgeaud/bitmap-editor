@@ -1,3 +1,5 @@
+require './lib/command'
+
 module Commands
   class Undo < ::Command
     # Execute the command. Undo the previous command.

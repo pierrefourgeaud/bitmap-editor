@@ -1,5 +1,6 @@
-require './lib/string'
+require './lib/utils'
 require './lib/bitmap'
+require './lib/undoable_command'
 
 module Commands
   class Create < ::UndoableCommand
@@ -34,7 +35,7 @@ module Commands
     # @return [Create] the newly created instance of the command.
     def self.create(app, *args)
       fail BadNumberArguments.new(args.length, 2) if args.length != 2
-      fail InvalidArguments unless args[0].is_i? && args[1].is_i?
+      fail InvalidArguments unless Utils.is_i?(args[0]) && Utils.is_i?(args[1])
       new(app, *args)
     end
   end

@@ -8,6 +8,7 @@ require './lib/commands/horizontal_draw'
 require './lib/commands/fill'
 require './lib/commands/clear'
 require './lib/commands/undo'
+require './lib/commands/redo'
 require './lib/bitmap_editor_error'
 
 class Parser

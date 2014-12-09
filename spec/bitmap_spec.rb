@@ -80,4 +80,10 @@ describe Bitmap do
 
   end
 
+  describe "#index" do
+
+    it { expect(subject.index(1, 2)).to eq(2) }
+
+  end
+
 end

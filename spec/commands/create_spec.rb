@@ -1,4 +1,3 @@
-require 'command'
 require 'commands/create'
 require 'app'
 

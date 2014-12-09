@@ -1,4 +1,3 @@
-require 'command'
 require 'commands/quit'
 require 'app'
 

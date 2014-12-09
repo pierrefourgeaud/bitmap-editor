@@ -1,3 +1,5 @@
+require './lib/command'
+
 module Commands
   class Redo < ::Command
     # Execute the command. Redo the previous command.

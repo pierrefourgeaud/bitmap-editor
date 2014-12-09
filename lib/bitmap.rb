@@ -46,7 +46,7 @@ class Bitmap
   # @param [Char] the new color of the pixel
   def []=(x, y, c)
     fail OutOfRange unless check_range(x, y)
-    data[(y-1) * width + (x-1)] = c
+    data[index(x, y)] = c
   end
 
   # Element reference operator to get a pixel.
@@ -56,7 +56,7 @@ class Bitmap
   # @return [Char] the color of the pixel
   def [](x, y)
     fail OutOfRange unless check_range(x, y)
-    data[(y-1) * width + (x-1)]
+    data[index(x, y)]
   end
 
   # Check if the pixel (x, y) is within the bitmap.
@@ -66,5 +66,14 @@ class Bitmap
   # @return [Boolean] true if the pixel is within the image.
   def check_range(x, y)
     !(x < 1 || y < 1 || x > width || y > height)
+  end
+
+  # Return the real index in the table given the x and y position.
+  #
+  # @param [Integer] x the x of the pixel.
+  # @param [Integer] y the y of the pixel.
+  # @return [Integer] the real index in the table.
+  def index(x, y)
+    (y - 1) * width + (x - 1)
   end
 end

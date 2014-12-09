@@ -1,3 +1,5 @@
+require './lib/command'
+
 module Commands
   class Quit < ::Command
     # Execute the command. Set a flag to quit the application.

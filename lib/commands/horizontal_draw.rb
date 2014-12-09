@@ -1,3 +1,5 @@
+require './lib/undoable_command'
+
 module Commands
   class HorizontalDraw < ::UndoableCommand
     attr_reader :x1, :x2, :y, :colour
@@ -42,7 +44,8 @@ module Commands
     # @return [HorizontalDraw] the newly created instance of the command.
     def self.create(app, *args)
       fail BadNumberArguments.new(args.length, 4) if args.length != 4
-      fail InvalidArguments unless args[0].is_i? && args[1].is_i? && args[2].is_i? && args[3].is_colour?
+      fail InvalidArguments unless Utils.is_i?(args[0]) && Utils.is_i?(args[1]) &&
+                                   Utils.is_i?(args[2]) && Utils.is_colour?(args[3])
       new(app, *args)
     end
   end

@@ -12,21 +12,24 @@ class App
     @cmd_mgr = CommandManager.new
   end
 
-  # Run the application. Display the prompt and wait for an input.
+  # Run the application. Call parse_line.
   # The application will run until the Quit command is called.
   def run
     catch(:quit) do
       while line = readline
-        begin
-          cmd = @parser.parse(line)
-          cmd.execute
-          cmd_mgr.add_command(cmd) if cmd.is_a?(UndoableCommand)
-        rescue BitmapEditorError => e
-          puts e.message
-        end
+        parse_line(line)
       end
     end
 
+  end
+
+  # Display the prompt and wait for an input.
+  def parse_line(line)
+    cmd = @parser.parse(line)
+    cmd.execute
+    cmd_mgr.add_command(cmd) if cmd.can_be_undone?
+  rescue BitmapEditorError => e
+    puts e.message
   end
 
   def quit

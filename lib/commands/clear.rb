@@ -1,3 +1,5 @@
+require './lib/undoable_command'
+
 module Commands
   class Clear < ::UndoableCommand
     # Execute the command. Clear the bitmap.

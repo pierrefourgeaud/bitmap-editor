@@ -1,4 +1,3 @@
-require 'command'
 require 'commands/clear'
 require 'app'
 

@@ -1,3 +1,5 @@
+require './lib/undoable_command'
+
 module Commands
   class SetPixel < ::UndoableCommand
     attr_reader :x, :y, :colour
@@ -34,7 +36,8 @@ module Commands
     # @return [SetPixel] the newly created instance of the command.
     def self.create(app, *args)
       fail BadNumberArguments.new(args.length, 3) if args.length != 3
-      fail InvalidArguments unless args[0].is_i? && args[1].is_i? && args[2].is_colour?
+      fail InvalidArguments unless Utils.is_i?(args[0]) && Utils.is_i?(args[1]) &&
+                                   Utils.is_colour?(args[2])
       new(app, *args)
     end
   end

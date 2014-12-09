@@ -1,4 +1,3 @@
-require 'command'
 require 'commands/vertical_draw'
 require 'app'
 

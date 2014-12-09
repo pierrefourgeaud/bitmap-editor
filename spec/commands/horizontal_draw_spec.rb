@@ -1,4 +1,3 @@
-require 'command'
 require 'commands/horizontal_draw'
 require 'app'
 

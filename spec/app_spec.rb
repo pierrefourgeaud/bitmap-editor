@@ -11,4 +11,10 @@ describe App do
 
   end
 
+  describe "#parse_line" do
+
+    it { expect {subject.parse_line("I 5 6")}.to change { subject.bitmap }.from(nil).to kind_of(Bitmap) }
+
+  end
+
 end

@@ -16,12 +16,10 @@ class Command
   # Method that should be implemented by the undoable command.
   # Otherwise it will do nothing.
   def undo
-    puts "nothin"
   end
-end
 
-class UndoableCommand < Command
-  def undo
-    fail NotImplementedMethod
+  # Boolean method that return false is the method cannot be undone
+  def can_be_undone?
+    false
   end
 end

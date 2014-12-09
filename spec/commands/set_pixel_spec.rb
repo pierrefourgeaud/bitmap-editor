@@ -1,4 +1,3 @@
-require 'command'
 require 'commands/set_pixel'
 require 'app'
 

@@ -1,3 +1,5 @@
+require './lib/command'
+
 module Commands
   class Show < ::Command
     # Execute the command. Display the bitmap.
