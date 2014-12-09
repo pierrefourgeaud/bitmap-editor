@@ -21,7 +21,7 @@ describe Commands::Show do
 
     describe "#execute" do
 
-      
+      it { expect { subject.execute }.to output("OO\nOO\n").to_stdout }
 
     end
 
