@@ -21,10 +21,8 @@ describe CommandManager do
       let(:cmd1) { Commands::Show.new(app) }
       let(:cmd2) { Commands::Show.new(app) }
 
-      #let(:command_manager) { double("command_manager") }
-      #allow(CommandManager.new).to receive(:max_commands).and_return(1)
-
       before do
+        allow(CommandManager).to receive(:max_commands).and_return(1)
         subject.add_command(cmd1)
       end
 
