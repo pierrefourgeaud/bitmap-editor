@@ -5,6 +5,7 @@ Ruby program that simulates a basic interactive bitmap editor. Bitmaps are repre
 
 #### Example:
 
+	$ ./bitmap-editor
 	> I 5 6
 	> L 2 3 A
 	> S
